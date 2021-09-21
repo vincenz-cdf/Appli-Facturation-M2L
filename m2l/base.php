@@ -68,7 +68,7 @@ function obtenirDetailFLigue($connexion, $num_facture)
 
 function obtenirtoutpres($connexion)
 {
-          $req="SELECT DISTINCT Code from Prestation P, Ligne_Facture F WHERE P.Code=F.Code_Prestation";
+          $req="SELECT Code from Prestation P";
           $rsfac =$connexion->query($req);
           return $rsfac->fetchall();
 }
@@ -185,5 +185,18 @@ function obtenirHistorique($connexion)
    $req = "SELECT * from Historique_des_prix_unitaires";
    $rsHist = $connexion->query($req);
    return $rsHist->fetchAll();
+}
+function obtenirNomLigue($connexion)
+{
+   $req = "SELECT Intitule FROM Ligue";
+   $rslg = $connexion->query($req);
+   return $rslg->fetchAll();
+}
+
+function obtenirTotal($connexion, $num_facture)
+{
+   $req="SELECT SUM(PU*Quantite) from Ligne_Facture F,Prestation P where F.Code_Prestation=P.Code AND Num_Facture='$num_facture'";
+   $rsFac=$connexion->query($req);
+   return $rsFac->fetchColumn();
 }
 ?>

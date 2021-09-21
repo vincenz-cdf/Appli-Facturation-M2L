@@ -71,6 +71,9 @@ foreach ($lgFac as $row) {
    $qty=$row['Quantite'];
    $libelle=$row['Libelle'];
    $pu=$row['PU'];
+   $totalht=obtenirTotal($connexion, $num_facture);
+   $tva=$totalht*20/100;
+   $totalttc=$totalht+$tva;
 
 echo"
           <tr>
@@ -80,18 +83,19 @@ echo"
             <td class='qty'>".$qty."</td>
             <td class='total' class='price'>".$total=$pu*$qty."</td>
           </tr>";}
+
 echo"
           <tr>
             <td colspan='4'>TotalHT</td>
-            <td class='total' id='subtotal'></td>
+            <td class='total' id='subtotal'>".$totalht."</td>
           </tr>
           <tr>
             <td colspan='4'>TVA 20%</td>
-            <td class='total'></td>
+            <td class='total'>".$tva."</td>
           </tr>
           <tr>
             <td colspan='4' class='grand total'>TotalTTC</td>
-            <td class='grand total'></td>
+            <td class='grand total'>".$totalttc."</td>
           </tr>
         </tbody>
       </table>"

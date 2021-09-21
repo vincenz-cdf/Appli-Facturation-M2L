@@ -11,7 +11,7 @@
 
 			<h2>M2L Manager</h2>	
 
-			<button type="button" class="btn btn-lig"><a href="ligue.php">Ligues</a></button>
+			<a href="ligue.php"><button type="button" class="btn btn-light">Ligues</a></button>
 			<button type="button" class="btn btn-pres"><a href="prestation.php">Prestations</a></button>
 			<button type="button" class="btn btn-fac"><a href="facture.php">Facturation</a></button>	
 			<button type="button" class="btn btn-hist"><a href="historiquePrix.php">historique des prix</a></button>

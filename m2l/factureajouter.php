@@ -21,7 +21,7 @@ foreach ($obtenirnumfac as $row)
   $num_facture=$num_facture+1;
 }
    $ndate=$_REQUEST['Ndate']; 
-   $codepres=$_REQUEST['fode_Prestation'];
+   $codepres=$_REQUEST['Code_Prestation'];
    $qty=$_REQUEST['Quantite'];
    $intitule=$_REQUEST['compte_ligue'];
 
@@ -58,40 +58,30 @@ echo "
          <td> Echéance: </td>
          <td>Fin du mois</td>
       </tr>';
-?>
-      <?php
+
 
           $lgfac=obtenirtoutpres($connexion);
           foreach ($lgfac as $row) {
             $montrepres=$row['Code'];
-          echo"<tr><td><SELECT value='.$codepres.' name='fode_Prestation'>;
-
-<OPTION>$montrepres</option>
-
-</SELECT>           
-          <td><input type='number' name='Quantite' value=".$qty."></td>";          }
-
-          for ($i=1; $i < 6 ; $i++) { 
-          if ($i==2) {
-            echo"<td>Nom de la ligue</td>";
-            }else if($i==3){
-              try{
-              $sql="SELECT * from Ligue";
-                $result =$connexion->query($sql);
-                $result = $result->fetchall();
-              }catch(PDOEXEPTION $e){
-              die($e);
-              }
-              echo "<td><SELECT name='compte_ligue'>";
-              foreach ($result as $row) {
-                echo "<OPTION>".$row['Intitule']."</option>";
-              }
-                echo "</SELECT></td>";
-              }        
+            echo"<tr><td>$montrepres</td>
+             <td><input type='number' name='Quantite' value=0 value=".$qty."></td>";
           }
-          echo "</tr>";
+          echo "<tr><td></td></tr>
+          <tr><td>";
+
+          $obtenirNomLigue = obtenirNomLigue($connexion);
+          echo "<label for='lig'>nom de la ligue:</label>
+          
+          <select id ='lig'>";
+          foreach($obtenirNomLigue as $row)
+          {
+            $intitule = $row['Intitule'];
+            echo "<option>$intitule</option>";
+          }
+          echo "</select></td></tr>";
+          
         ?>
-   </table>;
+   </table>
    <table align='center' cellspacing='15' cellpadding='0'>
       <tr>
          <td align='right'><input type='submit' value='Valider' name='valider'>

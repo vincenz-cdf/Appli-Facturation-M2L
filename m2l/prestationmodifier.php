@@ -43,7 +43,7 @@ echo "
       </tr>
       <tr>
          <td> Prix Unitaire: </td>
-         <td><input type="number" value="'.$pu.'" name="PU" size="50" 
+         <td><input type="number" step="0.01" value="'.$pu.'" name="PU" size="50" 
          maxlength="45">€</td>
       </tr>
    </table>';
